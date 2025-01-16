@@ -1,0 +1,89 @@
+Interpolation
+Quelle est la différence entre l’interpolation ({{ }}) et le property binding ([propriété]="valeur") ? Donne un exemple pour chacun.
+
+1 l'interpolation permet de d'afficher les données du model typescript dans la vue html et le property binding permet de lié une propriété DOM (comme la source d'une image ou le placeholder d'un input) à une valeur du composant 
+
+exemple d'interpolation:
+
+model: firstName: string = "Max";
+vue: <p>
+    {{firstName}}
+</p>
+
+exemple de property binding:
+
+model: namePlaceholder: string = "Enter your name";
+vue: <input type="text" [placeholder]="namePlaceholder">
+
+Property Binding
+Supposons que tu as une variable imageUrl dans ton composant TypeScript qui contient l’URL d’une image. Comment afficher cette image dans ta vue HTML à l’aide du property binding ?
+
+2. Voici comment afficher l'image dans la vue a partir de la variable imgUrl (j'ai également ajouter le alt):
+
+model:   imgUrl: string = "url l'image";
+ 	 imgName: string = "nom de l'image";
+
+vue: <img [src]="imgUrl" [alt]="imgName">
+
+
+Event Binding
+Si tu veux déclencher une méthode envoyerMessage() dans ton composant TypeScript lorsqu’un utilisateur clique sur un bouton, quelle syntaxe utilises-tu dans ton HTML ?
+
+3. Pour cela il faut utiliser l'event-binding pour lié la méthode envoyerMessage() du composant à l'événement click du bouton coté vue
+
+Exemple: 
+
+model :
+
+  envoyerMessage() {
+    console.log("Message envoyé");
+  }
+
+vue : <button (click)="envoyerMessage()">Envoyer un message</button>
+
+
+Two-Way Binding
+Tu veux créer un formulaire où l’utilisateur peut saisir son prénom, et ce prénom doit être mis à jour automatiquement dans une phrase qui dit : "Bonjour, [prénom] !" Quelle syntaxe dois-tu utiliser dans le fichier HTML ? (Pense au [(ngModel)].)
+
+4. Pour cela on utilise le two-way-binding pour synchroniser les données du formulaire entre la vue et le model 
+
+Exemple: 
+
+model:   prenom: string = "";
+
+vue: 
+
+<input type="text" [(ngModel)]="prenom">
+
+<p>
+    Bonjour, {{prenom}}
+</p>
+
+PS: ne pas oublié d'importer FormsModule dans le composant pour utiliser [(ngModel)]
+
+
+Challenge
+Tu veux construire un composant qui fait ceci :
+
+Un champ texte où l’utilisateur peut écrire son message (lié au modèle).
+Un bouton qui, lorsqu’il est cliqué, affiche une alerte avec le message saisi.
+Quels types de data binding utiliserais-tu pour cela ? Explique ton raisonnement.
+
+Etape 1 : utiliser le Two-way-binding pour synchroniser les données d'un formulaire entre le model et la vue
+Etape 2 : utiliser le event binding pour lié la méthode du model permettant d'afficher l'alerte contenant le message à l'évenement click du bouton coté vue.
+
+En pratique:
+
+model:
+
+  message: string = "";
+
+  alertMessage() {
+    alert(this.message);
+  }
+
+vue :
+
+<textarea name="" id="" cols="30" rows="15" [(ngModel)]="message"></textarea>
+
+<button (click)="alertMessage()">Envoyer une alerte</button>

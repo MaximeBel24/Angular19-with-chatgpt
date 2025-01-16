@@ -1,0 +1,48 @@
+<div *ngIf="isConnected">
+    Bienvenue ! 
+</div>
+<br>
+<div *ngIf="isAdmin; else isNotAdmin">
+    Accès administrateur
+</div>
+<ng-template #isNotAdmin>
+    Accès refusé
+</ng-template>
+<br>
+<button (click)="adminTrue()">Admin</button>
+<button (click)="adminFalse()">Pas admin</button>
+<br>
+<div *ngIf="data && data.isActive; else isNotActive">
+    Données valides
+</div>
+<ng-template #isNotActive>
+    Données invalides
+</ng-template>
+<br>
+<button (click)="activeTrue()">Actif</button>
+<button (click)="activeFalse()">Pas actif</button>
+<br>
+<br>
+<div *ngIf="articles.length > 0; else noArticles">
+    <ol>
+        <li *ngFor="let article of articles">
+            {{ article }}
+        </li>
+    </ol>
+</div>
+<ng-template #noArticles>
+    <p>Aucun article</p>
+</ng-template>
+
+<br>
+
+<input
+  type="text"
+  placeholder="Article à ajouter"
+  [(ngModel)]="newArticle"
+/>
+<button (click)="addArticle()">Ajouter l'article</button>
+
+<br>
+
+<button (click)="removeArticle()">Enlever le dernier article</button>

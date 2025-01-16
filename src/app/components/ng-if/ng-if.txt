@@ -1,0 +1,123 @@
+Syntaxe de base : Écris un exemple de code HTML utilisant *ngIf pour afficher un message "Bienvenue !" uniquement si une variable isConnected est vraie.
+
+1. voici mon code :
+
+model :   isConnected: boolean = true;
+
+vue:
+
+<div *ngIf="isConnected">
+    Bienvenue ! 
+</div>
+
+PS : il ne faut pas oublié d'importer ngIf dans le composant
+
+Clause else : Tu as une variable isAdmin. Si elle est vraie, affiche "Accès administrateur". Sinon, affiche "Accès refusé". Utilise un ng-template pour le contenu alternatif.
+
+2- Voici mon code :
+
+model : 
+
+  isAdmin: boolean = false;
+
+  adminTrue() {
+    this.isAdmin = true;
+  }
+  adminFalse() {
+    this.isAdmin = false;
+  }
+
+vue : 
+
+<div *ngIf="isAdmin; else isNotAdmin">
+    Accès administrateur
+</div>
+<ng-template #isNotAdmin>
+    Accès refusé
+</ng-template>
+<br>
+<button (click)="adminTrue()">Admin</button>
+<button (click)="adminFalse()">Pas admin</button>
+
+Je me suis permet de rajouté 2 boutons avec des event-binding pour pouvoir modifier la valeur de isAdmin
+
+Expression complexe : Comment afficher un paragraphe "Données valides" seulement si une variable data existe et qu’elle a une propriété isValid à true ?
+
+3. Voici mon code : 
+
+model : 
+
+  data:any = {
+    isActive : false,
+
+  }
+
+  activeTrue() {
+    this.data.isActive = true;
+    console.log(this.data.isActive);
+  }
+  activeFalse() {
+    this.data.isActive = false;
+    console.log(this.data.isActive);
+  }
+
+vue :
+
+<div *ngIf="data && data.isActive; else isNotActive">
+    Données valides
+</div>
+<ng-template #isNotActive>
+    Données invalides
+</ng-template>
+<br>
+<button (click)="activeTrue()">Actif</button>
+<button (click)="activeFalse()">Pas actif</button>
+
+Comme dans l'exercice précédent je me suis permis de faire quelques ajout
+
+Pratique : Crée un bloc HTML qui affiche une liste d’articles seulement si articles.length > 0, et affiche "Aucun article disponible" sinon.
+
+4. Voici mon code : 
+
+model : 
+
+  articles = [
+    'Dentifrice',
+    'Viande',
+    'Eau'
+  ]
+
+  removeArticle() {
+    this.articles.pop();
+  }
+
+vue: 
+
+<div *ngIf="articles.length > 0; else noArticles">
+    <ol>
+        <li *ngFor="let article of articles">
+            {{ article }}
+        </li>
+    </ol>
+</div>
+<ng-template #noArticles>
+    <p>Aucun article</p>
+</ng-template>
+<button (click)="removeArticle()">Enlever article</button>
+
+Je me suis parmis d'ajouter un event binding pour enlever des articles, un bloc else avec un ngtemplate ainsi que la directive ngFor pour l'affichage des articles
+
+Petit complément, un formulaire + bouton pour ajouter un article a la liste
+
+model : 
+
+  newArticle: string = '';
+
+  addArticle() {
+    this.articles.push(this.newArticle);
+  }
+
+vue : 
+
+<input type="text" placeholder="article à ajouter" [(ngModel)]="newArticle">
+<button (click)="addArticle()">Ajouter l'article</button>

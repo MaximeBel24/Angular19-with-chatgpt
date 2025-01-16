@@ -1,0 +1,29 @@
+<h2>1-Interpolation</h2>
+<p>
+    {{firstName}}
+</p>
+<h2></h2>
+<input type="text" [placeholder]="namePlaceholder">
+
+<br>
+<h2>2-Property Binding</h2>
+<img [src]="imgUrl" [alt]="imgName">
+
+<br>
+<br>
+<h2>3-Event Binding</h2>
+<button (click)="envoyerMessage()">Envoyer un message</button>
+
+<br>
+<br>
+<h2>4-Two-Way Binding</h2>
+<input type="text" [(ngModel)]="prenom">
+
+<p>
+    Bonjour, {{prenom}}
+</p>
+<br>
+<h2>5-Challenge</h2>
+<textarea name="" id="" cols="30" rows="15" [(ngModel)]="message"></textarea>
+<br>
+<button (click)="alertMessage()">Envoyer une alerte</button>
