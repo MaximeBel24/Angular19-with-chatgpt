@@ -1,0 +1,109 @@
+Syntaxe de base :
+Écris un exemple de code HTML utilisant *ngFor pour afficher une liste de prénoms à partir d’un tableau prenoms.
+
+1. Voici mon code :
+
+model:
+
+  prenoms: string[] = [
+    "Maxime",
+    "Pierre",
+    "Lucas"
+  ]
+
+  newPrenom: string = '';
+
+  addPrenom() {
+    if (this.newPrenom.trim() !== '') {
+      this.prenoms.push(this.newPrenom.trim());
+      this.newPrenom = '';
+    } else {
+      alert('Veuillez entrer un prénom valide.');
+    }
+  }
+
+vue:
+
+<div *ngFor="let prenom of prenoms">
+    <ul>
+        <li>
+            {{ prenom }}
+        </li>
+    </ul>
+</div>
+<input type="text" [(ngModel)]="newPrenom" />
+<button class="btn btn-success" (click)="addPrenom()">Ajouter un prenom</button>
+
+J'ai ajouter de quoi ajouter des prénom en plus dans la liste
+
+Accès à l'index :
+Comment afficher une liste numérotée (1. Nom1, 2. Nom2, etc.) en utilisant l’index de chaque élément ?
+
+Voici mon code :
+
+model:   
+
+noms: string[] = [
+    "Belin",
+    "Buée",
+    "De Riv"
+  ]
+
+  newName: string = '';
+
+  addName() {
+    if (this.newName.trim() !== '') {
+      this.noms.push(this.newName.trim());
+      this.newName = '';
+    } else {
+      alert('Veuillez entrer un nom valide.');
+    }
+  }
+
+
+
+vue:
+
+  <li *ngFor="let nom of noms; let index = index">
+    {{ index + 1 }}. {{ nom }}
+  </li>
+
+  <input type="text" [(ngModel)]="newName"/>
+    <button (click)="addName()">Ajouter un nom</button>
+
+Pairs et impairs :
+Écris un exemple où tu appliques un style spécifique pour les éléments pairs (background-color: lightblue) et un autre pour les impairs (background-color: lightgreen).
+
+3. Voici mon code :
+
+model:
+
+  numberArray: number[] = [1, 2, 3, 4, 5];
+
+
+vue:
+
+    <li>
+        <div *ngFor="let num of numberArray; let isEven = even; let isOdd = odd">
+            <ul [ngClass]="{ 'even-item': isEven, 'odd-item': isOdd }">
+                {{num}}
+            </ul>
+        </div>
+    </li>
+
+css : 
+
+.even-item {
+    background-color: lightblue;
+}
+
+.odd-item {
+    background-color: lightgreen;
+}
+
+
+
+
+
+Optimisation avec trackBy :
+Si tu as une liste d’objets représentant des produits, chaque produit ayant un id unique, comment utiliser trackBy pour optimiser le rendu de la liste ?

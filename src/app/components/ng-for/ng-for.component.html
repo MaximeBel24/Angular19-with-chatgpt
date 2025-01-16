@@ -1,3 +1,107 @@
-<div *ngFor="">
+<div class="container mt-4">
+    <!-- Titre -->
+    <h2 class="text-center mb-4">Liste des Prénoms</h2>
+  
+    <!-- Liste des prénoms -->
+    <div *ngIf="prenoms.length > 0; else noPrenoms">
+      <ul class="list-group mb-4">
+        <li class="list-group-item" *ngFor="let prenom of prenoms">
+          {{ prenom }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noPrenoms>
+      <p class="text-danger text-center">Aucun prénom à afficher.</p>
+    </ng-template>
+  
+    <!-- Formulaire pour ajouter un prénom -->
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Entrez un prénom"
+            [(ngModel)]="newPrenom"
+          />
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="addPrenom()"
+          >
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+
+        <!-- Exercice 2: Liste numérotée des noms -->
+    <h2 class="text-center mt-5 mb-4">Liste des Noms Numérotés</h2>
+
+    <!-- Liste des noms -->
+    <div *ngIf="noms.length > 0; else noNoms">
+    <ol class="list-group list-group-numbered mb-4">
+        <li class="list-group-item" *ngFor="let nom of noms; let index = index">
+        {{ index + 1 }}. {{ nom }}
+        </li>
+    </ol>
+    </div>
+    <ng-template #noNoms>
+    <p class="text-danger text-center">Aucun nom à afficher.</p>
+    </ng-template>
+
+    <!-- Formulaire pour ajouter un nom -->
+    <div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="input-group mb-3">
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Entrez un nom"
+            [(ngModel)]="newName"
+        />
+        <button class="btn btn-success" (click)="addName()">Ajouter</button>
+        </div>
+    </div>
+    </div>
+
+    <!-- Exercice 3: Liste stylée pour éléments pairs et impairs -->
+    <h2 class="text-center mt-5 mb-4">Liste des Nombres Stylée</h2>
+
+    <ul class="list-group">
+        <li
+            *ngFor="let num of numberArray; let isEven = even; let isOdd = odd"
+            [ngClass]="{
+            'even-item list-group-item': isEven,
+            'odd-item list-group-item': isOdd
+            }"
+        >
+            {{ num }}
+        </li>
+    </ul>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Liste des Produits</h2>
+      
+        <!-- Liste des produits -->
+        <ul class="list-group">
+          <li
+            *ngFor="let product of products; trackBy: trackByProductId"
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <strong>{{ product.name }}</strong> - {{ product.price | currency:'EUR' }}
+            </div>
+          </li>
+        </ul>
+      
+        <!-- Boutons pour interagir avec la liste -->
+        <div class="my-4 text-center">
+          <button class="btn btn-primary me-2" (click)="addProduct()">Ajouter un produit</button>
+          <button class="btn btn-warning me-2" (click)="updateFirstProduct()">Modifier le premier produit</button>
+          <button class="btn btn-danger" (click)="removeLastProduct()">Supprimer le dernier produit</button>
+        </div>
+      </div>
 
 </div>
+
+  
