@@ -1,29 +1,20 @@
-<h2>1-Interpolation</h2>
-<p>
-    {{firstName}}
-</p>
-<h2></h2>
-<input type="text" [placeholder]="namePlaceholder">
+<div class="container my-4">
 
-<br>
-<h2>2-Property Binding</h2>
-<img [src]="imgUrl" [alt]="imgName">
-
-<br>
-<br>
-<h2>3-Event Binding</h2>
-<button (click)="envoyerMessage()">Envoyer un message</button>
-
-<br>
-<br>
-<h2>4-Two-Way Binding</h2>
-<input type="text" [(ngModel)]="prenom">
-
-<p>
-    Bonjour, {{prenom}}
-</p>
-<br>
-<h2>5-Challenge</h2>
-<textarea name="" id="" cols="30" rows="15" [(ngModel)]="message"></textarea>
-<br>
-<button (click)="alertMessage()">Envoyer une alerte</button>
+    <h2 class="mb-3">1-Interpolation</h2>
+    <p class="bg-light p-2 border rounded">{{firstName}}</p>
+    
+    <h2 class="mt-4">2-Property Binding</h2>
+    <input type="text" class="form-control mb-3" [placeholder]="namePlaceholder">
+    <img [src]="imgUrl" [alt]="imgName" class="img-thumbnail">
+    
+    <h2 class="mt-4">3-Event Binding</h2>
+    <button (click)="envoyerMessage()" class="btn btn-primary">Envoyer un message</button>
+    
+    <h2 class="mt-4">4-Two-Way Binding</h2>
+    <input type="text" [(ngModel)]="prenom" class="form-control mb-3">
+    <p class="bg-light p-2 border rounded">Bonjour, {{prenom}}</p>
+    
+    <h2 class="mt-4">5-Challenge</h2>
+    <textarea name="" id="" cols="30" rows="15" [(ngModel)]="message" class="form-control mb-3"></textarea>
+    <button (click)="alertMessage()" class="btn btn-danger">Envoyer une alerte</button>
+</div>

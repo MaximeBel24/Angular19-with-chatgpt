@@ -1,0 +1,28 @@
+Composant standalone : Comment définis-tu un composant standalone, et où déclares-tu ses dépendances comme CommonModule ?
+
+1. Un composant standalone est un composant qui permet de déclarer ses dépendances sans avoir besoin de les inclure dans un module. Pour déclarer une dépendance, il faut l'ajouter dans le 'imports' du décorateur @Component
+
+Bootstrap d’une application : Si tu utilises un composant standalone comme racine de ton application, quel fichier et quelle fonction Angular dois-tu configurer ?
+
+2. Pour utiliser un composant standalone comme racine il faut configurer le fichier main.ts et la fonction bootstrapApplication(AppComponent).catch(err => console.error(err));
+
+Migration : Quels sont les principaux changements nécessaires pour migrer un composant classique vers un composant standalone ?
+
+3. Pour migrer un composant classique vars un standalone, il faut:
+	1 - ajouter dans le décorateur @Componant 'standalone: true'
+	2 - déplacer les dépendances dans le champ imports
+
+Lazy loading : Les composants standalone facilitent-ils le lazy loading ? Explique pourquoi ou donne un exemple.
+
+4- Les composants standalone ne changent pas le fonctionnement du lazy loading, mais ils le simplifient dans certains cas en éliminant les modules superflus. Cela te permet de choisir entre une approche modulaire ou autonome selon les besoins de ton projet.
+
+d'accord donc si je comprend bien les composant standalone simplifie le lazy loading car il n'est plus nécessaire de créer un module pour charger un composant et cela simplifie le code à écrire et à maintenir
+
+Quand utiliser les composants standalone pour le lazy loading :
+Si ta fonctionnalité se limite à un ou deux composants.
+Si tu veux un code léger et facile à maintenir.
+Si tu veux éviter la gestion des modules superflus.
+
+Quand préférer un module pour le lazy loading :
+Si la fonctionnalité contient plusieurs composants liés entre eux.
+Si tu as des services spécifiques ou une logique complexe que tu veux encapsuler dans un module.

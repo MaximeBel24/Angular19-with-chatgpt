@@ -1,48 +1,41 @@
-<div *ngIf="isConnected">
-    Bienvenue ! 
+<div class="container my-4">
+    <div *ngIf="isConnected" class="alert alert-success mt-4">
+        Bienvenue !
+    </div>
+    <div *ngIf="isAdmin; else isNotAdmin" class="alert alert-info">
+        Accès administrateur
+    </div>
+    <ng-template #isNotAdmin>
+        <div class="alert alert-danger">Accès refusé</div>
+    </ng-template>
+    <button (click)="adminTrue()" class="btn btn-primary me-2">Admin</button>
+    <button (click)="adminFalse()" class="btn btn-secondary">Pas admin</button>
+    <div *ngIf="data && data.isActive; else isNotActive" class="alert alert-success mt-3">
+        Données valides
+    </div>
+    <ng-template #isNotActive>
+        <div class="alert alert-danger">Données invalides</div>
+    </ng-template>
+    <button (click)="activeTrue()" class="btn btn-primary me-2">Actif</button>
+    <button (click)="activeFalse()" class="btn btn-secondary">Pas actif</button>
+    <div *ngIf="articles.length > 0; else noArticles" class="mt-3">
+        <ol class="list-group">
+            <li *ngFor="let article of articles" class="list-group-item">
+                {{ article }}
+            </li>
+        </ol>
+    </div>
+    <ng-template #noArticles>
+        <p class="text-muted">Aucun article</p>
+    </ng-template>
+    <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Article à ajouter"
+          [(ngModel)]="newArticle"
+        />
+        <button (click)="addArticle()" class="btn btn-success">Ajouter l'article</button>
+    </div>
+    <button (click)="removeArticle()" class="btn btn-danger">Enlever le dernier article</button>
 </div>
-<br>
-<div *ngIf="isAdmin; else isNotAdmin">
-    Accès administrateur
-</div>
-<ng-template #isNotAdmin>
-    Accès refusé
-</ng-template>
-<br>
-<button (click)="adminTrue()">Admin</button>
-<button (click)="adminFalse()">Pas admin</button>
-<br>
-<div *ngIf="data && data.isActive; else isNotActive">
-    Données valides
-</div>
-<ng-template #isNotActive>
-    Données invalides
-</ng-template>
-<br>
-<button (click)="activeTrue()">Actif</button>
-<button (click)="activeFalse()">Pas actif</button>
-<br>
-<br>
-<div *ngIf="articles.length > 0; else noArticles">
-    <ol>
-        <li *ngFor="let article of articles">
-            {{ article }}
-        </li>
-    </ol>
-</div>
-<ng-template #noArticles>
-    <p>Aucun article</p>
-</ng-template>
-
-<br>
-
-<input
-  type="text"
-  placeholder="Article à ajouter"
-  [(ngModel)]="newArticle"
-/>
-<button (click)="addArticle()">Ajouter l'article</button>
-
-<br>
-
-<button (click)="removeArticle()">Enlever le dernier article</button>
