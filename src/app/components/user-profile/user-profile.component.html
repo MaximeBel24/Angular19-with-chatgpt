@@ -1,0 +1,29 @@
+<div class="container">
+
+    <h2 class="mb-3">Informations Utilisateur</h2>
+    <p class="bg-light p-2 border rounded">{{ userName }}</p>
+    <img [src]="userAvatar" alt="{{ userName }}" class="img-thumbnail mb-3">
+    <br>
+    <button class="btn btn-success mb-3" (click)="userGreeting()">Salutation</button>
+    <br>
+    <input type="text" [(ngModel)]="userName" placeholder="Changez votre user name" class="form-control mb-4">
+    
+    <h2 class="mt-4">Liste des Produits</h2>
+    <ol *ngIf="products.length > 0; else noProduct" class="list-group mb-4">
+        <li *ngFor="let product of products" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ product }}
+            <button class="btn btn-sm btn-danger" (click)="deleteSpecificProduct(product)">Supprimer</button>
+        </li>
+    </ol>
+<ng-template #noProduct>
+    <p class="text-muted">Aucun produit disponible</p>
+</ng-template>
+
+<div class="input-group mb-3">
+    <input type="text" placeholder="Ajoutez un produit" [(ngModel)]="newProduct" class="form-control">
+    <button class="btn btn-success" (click)="addProduct()" aria-label="Ajouter un produit">
+        Ajouter le produit
+    </button>
+</div>
+
+</div>

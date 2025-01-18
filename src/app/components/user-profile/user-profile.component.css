@@ -1,0 +1,12 @@
+.btn {
+    margin: 5px;
+}
+
+ol {
+    padding: 10px;
+    list-style: decimal;
+}
+
+p {
+    color: grey;
+}
