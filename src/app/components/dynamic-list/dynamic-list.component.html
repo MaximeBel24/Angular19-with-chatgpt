@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Liste dynamique</h2>
+
+    <input type="text" [(ngModel)]="newItem" (keyup.enter)="addItem()" class="form-control" placeholder="Ajouter un élément">
+    <button class="btn btn-primary mb-3" (click)="addItem()">Ajouter</button>
+
+    <ul class="list-group" *ngIf="items.length > 0; else noItems">
+        <li class="list-group-item" *ngFor="let item of items; let i = index">
+            {{ item }}
+            <button class="btn btn-danger btn-sm float-end" (click)="removeItem(i)">Supprimer</button>
+        </li>
+    </ul>
+
+    <ng-template #noItems>
+        <div class="alert alert-warning">Aucun élément dans la liste</div>
+    </ng-template>
+</div>

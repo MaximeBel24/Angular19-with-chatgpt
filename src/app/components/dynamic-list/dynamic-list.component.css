@@ -1,0 +1,20 @@
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  input {
+    margin-bottom: 10px;
+  }
+  
+  .alert {
+    text-align: center;
+    font-weight: bold;
+  }
+  
